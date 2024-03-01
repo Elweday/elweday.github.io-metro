@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-gradient: linear-gradient(178deg, #ffff33 10%, #3333ff);
+  --gray: #34495e;
+  --darkgray: #2c3e50;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background: #34495e;
+    color: #fff;
+  }
+  
+  .container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: grid;
+    place-items: center;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  
+  .content {
+    --_gap: 1.5rem;
+    --_color: hsl(60 92% 71% / 1);
+    color: var(--_color);
+  }
+  
+  
+  .blob {
+    position: absolute;
+    opacity: 0.2;
+    width: 400px;
+    aspect-ratio: 1/1;
+    animation: animate 10s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite
+      alternate forwards;
+    filter: blur(60px);
+    z-index: -1;
+    background: linear-gradient(
+      47deg,
+      rgba(255, 88, 139, 1) 21%,
+      rgb(0 164 173) 67%,
+      rgba(118, 74, 166, 1) 81%
+    );
+  
+    /*  Optional  */
+    /*   box-shadow: inset 50px 50px 17px 0px #ff588b,
+      inset 100px 100px 17px 0px #66319f; */
+  }
+  
+  @keyframes animate {
+    0% {
+      translate: 60% -25%;
+      border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    }
+    50% {
+      translate: 0% 13%;
+      border-radius: 20% 71% 47% 70% / 81% 15% 22% 54%;
+      rotate: 41deg;
+      scale: 1.15;
+    }
+    100% {
+      translate: -45% 39%;
+      border-radius: 100% 75% 92% 74% / 60% 80% 30% 70%;
+      rotate: -60deg;
+      scale: 1.05;
+    }
+  }
+  
+  select {
+    /* Reset Select */
+    appearance: none;
+    outline: 10px red;
+    border: 0;
+    box-shadow: none;
+    /* Personalize */
+    flex: 1;
+    padding: 0 1em;
+    color: #fff;
+    background-color: var(--darkgray);
+    cursor: pointer;
+  }
+  /* Remove IE arrow */
+  select::-ms-expand {
+    display: none;
+  }
+  /* Custom Select wrapper */
+  .select {
+    position: relative;
+    display: flex;
+    width: 10em;
+    height: 2.5em;
+    border-radius: .25em;
+    overflow: hidden;
+    border: #2c3e50;
+    border-style: solid;
+    border-width: 2px;
+  }
+  /* Arrow */
+  .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1em;
+    background-color: #34455f;
+    transition: .25s all ease;
+    pointer-events: none;
+  }
+  /* Transition */
+  .select:hover::after {
+    color: #f39c12;
+  }
+
+  .more-info-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2c3e50;
+    border-color: antiquewhite;
+    border: #fff 2px  dashed;
+    color: #fff;
+    font-size: 30px;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    box-shadow: #2c3e50 0px 0px 10px 1px;
+    cursor: pointer;
+  }
+
+  .dialog {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    color : white;
+    background-color: #34455f;
+    position: relative;
+    
+  }
+  .dialog-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(0 0 0 / 0.2);
+    height: 40px;
+  } 
+
+  .dialog-close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    background-color: transparent;
+    border-color: #fff;
+    border: #fff ;
+    color: #fff;
+    font-size: 25px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 2c3e50 0px 0px 10px 1px;
+    cursor: pointer;
+  }
+ 
+  .instructions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-block: 1rem;
+    padding-block-end: 3rem;
+    padding-inline: 2rem;
+    font-size: 1.2rem;
+    max-width: 60%;
+  }
+
+  dialog {
+    opacity: 0;
+    transition: opacity 0.5s;
+    display: flex;
+    place-self: center;
+    border: none;
+    pointer-events: none;
+    border-radius: 12px;
+    background-color: #34455f;
+  }
+  dialog[open] {
+    opacity: 1;
+    pointer-events: inherit;
+  }
+  dialog::backdrop {
+    background-color: rgba(0,0,0, 0.4);
+    backdrop-filter: blur(1px);
+  }
+  
