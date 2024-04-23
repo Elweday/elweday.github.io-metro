@@ -44,10 +44,6 @@ body {
 	filter: blur(60px);
 	z-index: -1;
 	background: linear-gradient(47deg, rgba(255, 88, 139, 1) 21%, rgb(0 164 173) 67%, rgba(118, 74, 166, 1) 81%);
-
-	/*  Optional  */
-	/*   box-shadow: inset 50px 50px 17px 0px #ff588b,
-      inset 100px 100px 17px 0px #66319f; */
 }
 
 @keyframes animate {

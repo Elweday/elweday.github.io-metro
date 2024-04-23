@@ -34,7 +34,7 @@ function App() {
       </div>
       <ul className="instructions">
         <li style={{fontWeight: "bold", fontSize: "1rem"}}>Buy a <span style={{color: trip.ticket.color}}>{trip.ticket.price} L.E.</span> ticket from  <span style={{color: trip.path[0].lines.values().next().value.color}}> {trip.path[0].name}.</span></li>
-        {trip.instructions && trip.instructions.map(((instruction, i)=> <li key={i} style={{fontSize: "0.6rem"}}>{instruction}</li>))}
+        {trip?.instructions?.map(((instruction, i)=> <li key={i} style={{fontSize: "0.6rem"}}>{instruction}</li>))}
         <li style={{fontWeight: "bold", fontSize: "1rem"}}>Get off at <span style={{color: trip.path[trip.path.length-1].lines.values().next().value.color}}> {trip.path[trip.path.length-1].name}.</span></li>
       </ul>
         <div style={{color: "black", opacity: "0.8", position: "absolute", borderRadius: "3px", width: "3.5rem", height: "6rem" , backgroundColor: trip.ticket.color, right: "1rem", top: "4rem"}}>
@@ -56,7 +56,10 @@ function App() {
         </h1>
         <div style={{display: "flex", justifyContent: "center", alignItems: "center", gap: "0.5rem"}}>
         <div className="select">
-        <select defaultValue={undefined} value={start} onChange={(e) => setStart(e.target.value as any)}>
+        <select defaultValue={undefined} value={start} onChange={(e) => {
+          // @ts-expect-error TODO: type Station Name should be exported and coerced.
+          setStart(e.target.value)
+        }}>
           <option selected disabled value={undefined}> Start Station</option>
           {[...metro.stations.values()].map(s => <option key={s.name} >{s.name}</option>)}
         </select>
@@ -64,7 +67,11 @@ function App() {
         </div>
         
         <div className="select">
-        <select defaultValue={undefined} value={end} onChange={(e) => setEnd(e.target.value as any)}>
+
+        <select defaultValue={undefined} value={end} onChange={(e) => {
+          // @ts-expect-error TODO: type Station Name should be exported and coerced.
+          setEnd(e.target.value)
+          }}>
         <option selected disabled value={undefined}> End Station</option>
 
           {[...metro.stations.values()].map(s => <option key={s.name} >{s.name}</option>)}
